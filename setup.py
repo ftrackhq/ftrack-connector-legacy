@@ -65,7 +65,6 @@ setup(
     setup_requires=[
         'qtext @ git+https://bitbucket.org/ftrack/qtext/get/0.2.2.zip#egg=qtext',
         'pyScss >= 1.2.0, < 2',
-        'PySide >= 1.2.2, < 2',
         'sphinx >= 1.2.2, < 2',
         'sphinx_rtd_theme >= 0.1.6, < 2',
         'lowdown >= 0.1.0, < 1',
@@ -80,7 +79,6 @@ setup(
     install_requires=[
         'ftrack-python-legacy-api >=3, <4',
         'ftrack-python-api >= 1, < 2',
-        'PySide >= 1.2.2, < 2',
         'Riffle',
         'arrow >= 0.4.6, < 1',
         'appdirs == 1.4.0',
