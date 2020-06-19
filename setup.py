@@ -102,34 +102,23 @@ class BuildResources(Command):
                 print('Compiled {0}'.format(css_target))
 
         try:
-            pyside_rcc_commands = ['pyside2-rcc', 'pyside-rcc']
-            valid_commands = []
+            pyside_rcc_command = 'pyside-rcc'
 
-            for pyside_rcc_command in pyside_rcc_commands:
-                # On Windows, pyside-rcc is not automatically available on the
-                # PATH so try to find it manually.
-                if sys.platform == 'win32':
-                    import Qt
-                    pyside_rcc_command = os.path.join(
-                        os.path.dirname(Qt.__file__),
-                        '{}.exe'.format(pyside_rcc_command)
-                    )
+            # On Windows, pyside-rcc is not automatically available on the
+            # PATH so try to find it manually.
+            if sys.platform == 'win32':
+                import PySide
+                pyside_rcc_command = os.path.join(
+                    os.path.dirname(PySide.__file__),
+                    'pyside-rcc.exe'
+                )
 
-                # Check if the command for pyside*-rcc is in executable paths.
-                if find_executable(pyside_rcc_command):
-                    valid_commands.append(pyside_rcc_command)
-
-            if not valid_commands:
-                raise IOError('Not executable found for pyside*-rcc ')
-
-            # Use the first occurrence if more than one is found.
             subprocess.check_call([
-                valid_commands[0],
+                pyside_rcc_command,
                 '-o',
                 self.resource_target_path,
                 self.resource_source_path
             ])
-            print('{0} : Compiled {1} '.format(valid_commands[0], self.resource_target_path))
 
         except (subprocess.CalledProcessError, OSError) as error:
             raise RuntimeError(
@@ -235,7 +224,9 @@ setup(
     author_email='support@ftrack.com',
     license='Apache License (2.0)',
     packages=find_packages(SOURCE_PATH),
-    package_dir={'': 'source'},
+    package_dir={
+        '': 'source'
+    },
     project_urls={
         'Source Code': 'https://bitbucket.org/ftrack/ftrack-connector-legacy/src/{}'.format(VERSION),
     },
@@ -244,6 +235,7 @@ setup(
         'pyScss >= 1.2.0, < 2',
         'sphinx >= 1.2.2, < 2',
         'sphinx_rtd_theme >= 0.1.6, < 2',
+        'PySide >= 1.2.2, < 2',
         'lowdown >= 0.1.0, < 1',
         'setuptools>=30.3.0',
         'setuptools_scm'
@@ -264,10 +256,6 @@ setup(
         'qtext @ git+https://bitbucket.org/ftrack/qtext/get/0.2.2.zip#egg=qtext'
     ],
     python_requires='>= 2.7.9, < 3.0',
-    extras_require={
-        'PySide': ['PySide >= 1.2.2, < 2'],
-        'PySide2': ['PySide2 >=5, <6']
-    },
     cmdclass={
         'build': Build,
         'build_ext': Build,
