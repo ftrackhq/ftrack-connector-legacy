@@ -5,10 +5,10 @@ import time as _time
 
 from QtExt import QtWidgets, QtCore
 
-import ftrack_connect.ui.widget.line_edit
-import ftrack_connect.ui.widget.label
-import ftrack_connect.error
-import ftrack_connect.duration
+import ftrack_connector_legacy.ui.widget.line_edit
+import ftrack_connector_legacy.ui.widget.label
+import ftrack_connector_legacy.error
+import ftrack_connector_legacy.duration
 
 
 class Timer(QtWidgets.QFrame):
@@ -67,14 +67,14 @@ class Timer(QtWidgets.QFrame):
         self.labelLayout = QtWidgets.QVBoxLayout()
         layout.addLayout(self.labelLayout, stretch=1)
 
-        self.titleLabel = ftrack_connect.ui.widget.label.Label()
+        self.titleLabel = ftrack_connector_legacy.ui.widget.label.Label()
         self.titleLabel.setProperty('title', True)
         self.labelLayout.addWidget(self.titleLabel)
 
-        self.descriptionLabel = ftrack_connect.ui.widget.label.Label()
+        self.descriptionLabel = ftrack_connector_legacy.ui.widget.label.Label()
         self.labelLayout.addWidget(self.descriptionLabel)
 
-        self.timeField = ftrack_connect.ui.widget.line_edit.LineEdit()
+        self.timeField = ftrack_connector_legacy.ui.widget.line_edit.LineEdit()
         self.timeField.setObjectName('timeField')
         self.timeField.setAlignment(QtCore.Qt.AlignCenter)
         layout.addWidget(self.timeField)
@@ -149,10 +149,10 @@ class Timer(QtWidgets.QFrame):
     def _onTimeFieldBlurred(self):
         '''Handle time field losing focus.'''
         try:
-            time = ftrack_connect.duration.parser.parse(
+            time = ftrack_connector_legacy.duration.parser.parse(
                 self.timeField.text()
             )
-        except ftrack_connect.error.ParseError:
+        except ftrack_connector_legacy.error.ParseError:
             # Revert to previous correct value.
             # TODO: Indicate to user that entered value is invalid.
             self.setTime(self.time())
@@ -211,13 +211,13 @@ class Timer(QtWidgets.QFrame):
     def start(self):
         '''Start the timer.
 
-        Raise :exc:`ftrack_connect.error.InvalidState` if timer is not currently
+        Raise :exc:`ftrack_connector_legacy.error.InvalidState` if timer is not currently
         stopped.
 
         '''
         state = self.state()
         if state is not self.STOPPED:
-            raise ftrack_connect.error.InvalidStateError(
+            raise ftrack_connector_legacy.error.InvalidStateError(
                 'Cannot start timer in {0} state.'.format(state)
             )
 
@@ -230,13 +230,13 @@ class Timer(QtWidgets.QFrame):
     def stop(self):
         '''Stop the timer.
 
-        Raise :exc:`ftrack_connect.error.InvalidState` if timer is already
+        Raise :exc:`ftrack_connector_legacy.error.InvalidState` if timer is already
         stopped.
 
         '''
         state = self.state()
         if state is self.STOPPED:
-            raise ftrack_connect.error.InvalidStateError(
+            raise ftrack_connector_legacy.error.InvalidStateError(
                 'Cannot stop timer in {0} state.'.format(state)
             )
 
@@ -255,12 +255,12 @@ class Timer(QtWidgets.QFrame):
     def pause(self):
         '''Pause the timer without updating state.
 
-        Raise :exc:`ftrack_connect.error.InvalidState` if timer is not running.
+        Raise :exc:`ftrack_connector_legacy.error.InvalidState` if timer is not running.
 
         '''
         state = self.state()
         if state is not self.RUNNING:
-            raise ftrack_connect.error.InvalidStateError(
+            raise ftrack_connector_legacy.error.InvalidStateError(
                 'Cannot pause timer in {0} state.'.format(state)
             )
 
@@ -273,12 +273,12 @@ class Timer(QtWidgets.QFrame):
     def resume(self):
         '''Resume a paused timer without updating state.
 
-        Raise :exc:`ftrack_connect.error.InvalidState` if timer is not paused.
+        Raise :exc:`ftrack_connector_legacy.error.InvalidState` if timer is not paused.
 
         '''
         state = self.state()
         if state is not self.PAUSED:
-            raise ftrack_connect.error.InvalidStateError(
+            raise ftrack_connector_legacy.error.InvalidStateError(
                 'Cannot resume timer in {0} state.'.format(state)
             )
 
@@ -369,7 +369,7 @@ class Timer(QtWidgets.QFrame):
 
         changed = (time == self.time())
         self._elapsed = time
-        text = ftrack_connect.duration.formatter.format(time)
+        text = ftrack_connector_legacy.duration.formatter.format(time)
         self.timeField.setText(text)
 
         if changed:

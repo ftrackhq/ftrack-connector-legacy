@@ -6,7 +6,7 @@ import logging
 from QtExt import QtWidgets, QtCore
 import ftrack
 
-from ftrack_connect.worker import Worker
+from ftrack_connector_legacy.worker import Worker
 from ftrack_api import symbol
 from ftrack_api import exception
 

@@ -7,7 +7,7 @@ from QtExt import QtCore
 
 import entity_path as entityPath
 import entity_browser as entityBrowser
-from ftrack_connect.ui.theme import applyTheme
+from ftrack_connector_legacy.ui.theme import applyTheme
 
 
 class ContextSelector(QtWidgets.QWidget):

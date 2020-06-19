@@ -7,7 +7,7 @@ from QtExt import QtWidgets, QtCore, QtGui
 
 import ftrack_api
 
-import ftrack_connect.worker
+import ftrack_connector_legacy.worker
 
 
 def ItemFactory(session, entity):
@@ -391,7 +391,7 @@ class EntityTreeModel(QtCore.QAbstractItemModel):
             self.loadStarted.emit()
             startIndex = len(item.children)
 
-            worker = ftrack_connect.worker.Worker(item.fetchChildren)
+            worker = ftrack_connector_legacy.worker.Worker(item.fetchChildren)
             worker.start()
 
             while worker.isRunning():

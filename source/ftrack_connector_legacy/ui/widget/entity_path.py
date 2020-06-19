@@ -4,7 +4,7 @@
 from QtExt import QtWidgets, QtCore
 import ftrack
 
-import ftrack_connect.asynchronous
+import ftrack_connector_legacy.asynchronous
 
 
 class EntityPath(QtWidgets.QLineEdit):
@@ -17,7 +17,7 @@ class EntityPath(QtWidgets.QLineEdit):
         self.setReadOnly(True)
         self.path_ready.connect(self.on_path_ready)
 
-    @ftrack_connect.asynchronous.asynchronous
+    @ftrack_connector_legacy.asynchronous.asynchronous
     def setEntity(self, entity):
         '''Set the *entity* for this widget.'''
         names = []

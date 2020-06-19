@@ -8,9 +8,9 @@ import logging
 import ftrack
 import ftrack_api.event.base
 
-import ftrack_connect.asynchronous
-from ftrack_connect.ui.widget.thumbnail import ActionIcon
-import ftrack_connect.session
+import ftrack_connector_legacy.asynchronous
+from ftrack_connector_legacy.ui.widget.thumbnail import ActionIcon
+import ftrack_connector_legacy.session
 
 
 
@@ -143,12 +143,12 @@ class ActionItem(QtWidgets.QWidget):
         self.beforeActionLaunch.emit(action)
         self._publishLaunchActionEvent(action)
 
-    @ftrack_connect.asynchronous.asynchronous
+    @ftrack_connector_legacy.asynchronous.asynchronous
     def _publishLaunchActionEvent(self, action):
         '''Launch *action* asynchronously and emit *actionLaunched* when completed.'''
         try:
             if action.is_new_api:
-                session = ftrack_connect.session.get_shared_session()
+                session = ftrack_connector_legacy.session.get_shared_session()
                 results = session.event_hub.publish(
                     ftrack_api.event.base.Event(
                         topic='ftrack.action.launch',

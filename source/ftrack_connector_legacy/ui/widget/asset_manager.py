@@ -9,16 +9,16 @@ from QtExt import QtCore, QtWidgets, QtGui, is_webwidget_supported
 import ftrack
 import ftrack_api
 
-from ftrack_connect.connector import FTAssetObject, PanelComInstance
+from ftrack_connector_legacy.connector import FTAssetObject, PanelComInstance
 
 has_webwidgets = is_webwidget_supported()
 
 if has_webwidgets:
-    from ftrack_connect.ui.widget.info import FtrackInfoDialog
+    from ftrack_connector_legacy.ui.widget.info import FtrackInfoDialog
 
-from ftrack_connect.ui.widget import header
-from ftrack_connect.ui.theme import applyTheme
-from ftrack_connect.ui import resource
+from ftrack_connector_legacy.ui.widget import header
+from ftrack_connector_legacy.ui.theme import applyTheme
+from ftrack_connector_legacy.ui import resource
 
 
 class Ui_AssetManager(object):

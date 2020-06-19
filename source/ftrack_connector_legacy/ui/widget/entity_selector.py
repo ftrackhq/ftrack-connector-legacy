@@ -4,8 +4,8 @@
 from QtExt import QtWidgets, QtCore, QtGui
 import ftrack
 
-from ftrack_connect.ui.widget import entity_path as _entity_path
-from ftrack_connect.ui.widget import entity_browser as _entity_browser
+from ftrack_connector_legacy.ui.widget import entity_path as _entity_path
+from ftrack_connector_legacy.ui.widget import entity_browser as _entity_browser
 
 
 class EntitySelector(QtWidgets.QStackedWidget):

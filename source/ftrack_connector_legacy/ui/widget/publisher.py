@@ -11,16 +11,16 @@ from ftrack_api import exception
 from ftrack_api import event
 
 
-from ftrack_connect.ui.widget import data_drop_zone as _data_drop_zone
-from ftrack_connect.ui.widget import components_list as _components_list
-from ftrack_connect.ui.widget import item_selector as _item_selector
-from ftrack_connect.ui.widget import thumbnail_drop_zone as _thumbnail_drop_zone
-from ftrack_connect.ui.widget import asset_options as _asset_options
-from ftrack_connect.ui.widget import entity_selector
-from ftrack_connect.session import get_shared_session
+from ftrack_connector_legacy.ui.widget import data_drop_zone as _data_drop_zone
+from ftrack_connector_legacy.ui.widget import components_list as _components_list
+from ftrack_connector_legacy.ui.widget import item_selector as _item_selector
+from ftrack_connector_legacy.ui.widget import thumbnail_drop_zone as _thumbnail_drop_zone
+from ftrack_connector_legacy.ui.widget import asset_options as _asset_options
+from ftrack_connector_legacy.ui.widget import entity_selector
+from ftrack_connector_legacy.session import get_shared_session
 
-import ftrack_connect.asynchronous
-import ftrack_connect.error
+import ftrack_connector_legacy.asynchronous
+import ftrack_connector_legacy.error
 
 
 class EntitySelector(entity_selector.EntitySelector):
@@ -143,7 +143,7 @@ class Publisher(QtWidgets.QWidget):
         # TODO: Proper validation.
         entity = self.entitySelector.getEntity()
         if entity is None:
-            raise ftrack_connect.error.ConnectError(
+            raise ftrack_connector_legacy.error.ConnectError(
                 'No linked entity selected to publish against!'
             )
 
@@ -205,7 +205,7 @@ class Publisher(QtWidgets.QWidget):
                 'Failed to clean up version after failed publish'
             )
 
-    @ftrack_connect.asynchronous.asynchronous
+    @ftrack_connector_legacy.asynchronous.asynchronous
     def _publish(
         self, entity=None, assetName=None, assetType=None,
         versionDescription='', taskId=None, components=None,
@@ -228,13 +228,13 @@ class Publisher(QtWidgets.QWidget):
         try:
             if not (asset or assetType):
                 self.publishFinished.emit(False)
-                raise ftrack_connect.error.ConnectError(
+                raise ftrack_connector_legacy.error.ConnectError(
                     'No asset type selected.'
                 )
 
             if not entity:
                 self.publishFinished.emit(False)
-                raise ftrack_connect.error.ConnectError('No entity found')
+                raise ftrack_connector_legacy.error.ConnectError('No entity found')
 
             if components is None:
                 components = []

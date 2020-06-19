@@ -5,7 +5,7 @@ import os
 
 from QtExt import QtWidgets, QtCore, QtGui
 
-import ftrack_connect.error
+import ftrack_connector_legacy.error
 
 # Thumbnail limits from ftrack server.
 THUMBNAIL_UPLOAD_MAX_SIZE = 10 * (1024 ** 2)  # 10 MiB in Bytes
@@ -14,7 +14,7 @@ THUMBNAIL_UPLOAD_VALID_FILE_TYPES = (
 )
 
 
-class ConnectThumbnailValidationError(ftrack_connect.error.ConnectError):
+class ConnectThumbnailValidationError(ftrack_connector_legacy.error.ConnectError):
     '''ftrack connect thumbnail validation error.'''
     pass
 

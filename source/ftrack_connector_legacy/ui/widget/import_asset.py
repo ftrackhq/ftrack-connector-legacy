@@ -5,15 +5,15 @@ import getpass
 import ftrack
 from QtExt import QtCore, QtWidgets
 
-from ftrack_connect.connector import PanelComInstance, FTAssetObject
-from ftrack_connect.ui.widget.list_assets_table import ListAssetsTableWidget
-from ftrack_connect.ui.widget.asset_version_details import AssetVersionDetailsWidget
-from ftrack_connect.ui.widget.component_table import ComponentTableWidget
-from ftrack_connect.ui.widget.import_options import ImportOptionsWidget
-from ftrack_connect.ui.widget import header
-from ftrack_connect.ui.theme import applyTheme
-from ftrack_connect.ui.widget.context_selector import ContextSelector
-from ftrack_connect.ui import resource
+from ftrack_connector_legacy.connector import PanelComInstance, FTAssetObject
+from ftrack_connector_legacy.ui.widget.list_assets_table import ListAssetsTableWidget
+from ftrack_connector_legacy.ui.widget.asset_version_details import AssetVersionDetailsWidget
+from ftrack_connector_legacy.ui.widget.component_table import ComponentTableWidget
+from ftrack_connector_legacy.ui.widget.import_options import ImportOptionsWidget
+from ftrack_connector_legacy.ui.widget import header
+from ftrack_connector_legacy.ui.theme import applyTheme
+from ftrack_connector_legacy.ui.widget.context_selector import ContextSelector
+from ftrack_connector_legacy.ui import resource
 
 
 class FtrackImportAssetDialog(QtWidgets.QDialog):

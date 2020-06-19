@@ -5,7 +5,7 @@ import os
 
 from QtExt import QtWidgets, QtCore, QtGui
 
-from ftrack_connect.connector import HelpFunctions
+from ftrack_connector_legacy.connector import HelpFunctions
 from ftrack_api import symbol
 
 

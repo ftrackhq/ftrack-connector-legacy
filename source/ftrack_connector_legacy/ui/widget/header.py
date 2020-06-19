@@ -6,7 +6,7 @@ import os
 from QtExt import QtCore, QtWidgets, QtGui
 
 import ftrack
-from ftrack_connect.ui import resource
+from ftrack_connector_legacy.ui import resource
 import thumbnail
 
 

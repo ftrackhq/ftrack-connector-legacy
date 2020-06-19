@@ -7,7 +7,7 @@ import ftrack_connector_legacy.asynchronous
 import ftrack_connector_legacy.session
 
 
-logger = logging.getLogger('ftrack_connect:usage')
+logger = logging.getLogger('ftrack_connector_legacy:usage')
 _log_usage_session = None
 
 

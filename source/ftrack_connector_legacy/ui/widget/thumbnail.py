@@ -6,7 +6,7 @@ import urllib2
 
 from QtExt import QtWidgets, QtCore, QtGui
 import ftrack
-import ftrack_connect.worker
+import ftrack_connector_legacy.worker
 
 # Cache of thumbnail images.
 IMAGE_CACHE = dict()
@@ -40,7 +40,7 @@ class Base(QtWidgets.QLabel):
                 app = QtWidgets.QApplication.instance()
                 app.processEvents()
 
-        self._worker = ftrack_connect.worker.Worker(
+        self._worker = ftrack_connector_legacy.worker.Worker(
             self._download, [reference], parent=self
         )
 

@@ -5,7 +5,7 @@ from QtExt import QtWidgets
 from QtExt import QtCore
 from QtExt import QtGui
 
-import ftrack_connect.ui.widget.label
+import ftrack_connector_legacy.ui.widget.label
 
 
 class TimeLog(QtWidgets.QWidget):
@@ -35,11 +35,11 @@ class TimeLog(QtWidgets.QWidget):
         self.labelLayout = QtWidgets.QVBoxLayout()
         layout.addLayout(self.labelLayout, stretch=1)
 
-        self.titleLabel = ftrack_connect.ui.widget.label.Label()
+        self.titleLabel = ftrack_connector_legacy.ui.widget.label.Label()
         self.titleLabel.setProperty('title', True)
         self.labelLayout.addWidget(self.titleLabel)
 
-        self.descriptionLabel = ftrack_connect.ui.widget.label.Label()
+        self.descriptionLabel = ftrack_connector_legacy.ui.widget.label.Label()
         self.labelLayout.addWidget(self.descriptionLabel)
 
         # TODO: Add theme support.

@@ -12,7 +12,7 @@ _shared_session = None
 
 def destroy_shared_session():
     '''Destroy the shared session.'''
-    logger = logging.getLogger('ftrack_connect:session.destroy_shared_session')
+    logger = logging.getLogger('ftrack_connector_legacy:session.destroy_shared_session')
     global _shared_session
 
     if _shared_session:

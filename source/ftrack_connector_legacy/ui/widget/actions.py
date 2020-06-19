@@ -11,12 +11,12 @@ from QtExt import QtWidgets
 import ftrack
 import ftrack_api.event.base
 
-import ftrack_connect.asynchronous
-import ftrack_connect.error
-import ftrack_connect.session
-import ftrack_connect.usage
+import ftrack_connector_legacy.asynchronous
+import ftrack_connector_legacy.error
+import ftrack_connector_legacy.session
+import ftrack_connector_legacy.usage
 
-from ftrack_connect.ui.widget import (
+from ftrack_connector_legacy.ui.widget import (
     action_item, flow_layout, entity_selector, overlay
 )
 
@@ -83,7 +83,7 @@ class Actions(QtWidgets.QWidget):
         self.logger = logging.getLogger(
             __name__ + '.' + self.__class__.__name__
         )
-        self._session = ftrack_connect.session.get_session()
+        self._session = ftrack_connector_legacy.session.get_session()
 
         layout = QtWidgets.QVBoxLayout()
         self.setLayout(layout)
@@ -162,7 +162,7 @@ class Actions(QtWidgets.QWidget):
 
         # Send usage event in the main thread to prevent X server threading
         # related crashes on Linux.
-        ftrack_connect.usage.send_event(
+        ftrack_connector_legacy.usage.send_event(
             'LAUNCHED-ACTION',
             metadata,
             asynchronous=False
@@ -241,7 +241,7 @@ class Actions(QtWidgets.QWidget):
                 '<p>Try another selection or add some actions.</p>'
             )
 
-    @ftrack_connect.asynchronous.asynchronous
+    @ftrack_connector_legacy.asynchronous.asynchronous
     def _updateRecentActions(self):
         '''Retrieve and update recent actions.'''
         self._recentActions = self._getRecentActions()
@@ -301,7 +301,7 @@ class Actions(QtWidgets.QWidget):
             pass
         itemList.insert(0, item)
 
-    @ftrack_connect.asynchronous.asynchronous
+    @ftrack_connector_legacy.asynchronous.asynchronous
     def _addRecentAction(self, actionLabel):
         '''Add *actionLabel* to recent actions, persisting the change.'''
         recentActions = self._getRecentActions()
@@ -337,7 +337,7 @@ class Actions(QtWidgets.QWidget):
                         ActionBase(action, is_new_api=False)
                     )
 
-        session = ftrack_connect.session.get_shared_session()
+        session = ftrack_connector_legacy.session.get_shared_session()
         results = session.event_hub.publish(
             ftrack_api.event.base.Event(
                 topic='ftrack.action.discover',

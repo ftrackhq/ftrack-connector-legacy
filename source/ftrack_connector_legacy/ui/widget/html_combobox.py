@@ -3,7 +3,7 @@
 
 from QtExt import QtWidgets, QtCore, QtGui
 
-import ftrack_connect.ui.widget.html_delegate
+import ftrack_connector_legacy.ui.widget.html_delegate
 
 
 class HtmlComboBox(QtWidgets.QComboBox):
@@ -17,14 +17,14 @@ class HtmlComboBox(QtWidgets.QComboBox):
 
         .. seealso::
 
-            :class:`ftrack_connect.ui.widget.html_delegate.HtmlDelegate`
+            :class:`ftrack_connector_legacy.ui.widget.html_delegate.HtmlDelegate`
 
         '''
         self.format = formatter
         self._resize_occurred = False
         super(HtmlComboBox, self).__init__(*args, **kwargs)
         self.setItemDelegate(
-            ftrack_connect.ui.widget.html_delegate.HtmlDelegate(formatter)
+            ftrack_connector_legacy.ui.widget.html_delegate.HtmlDelegate(formatter)
         )
         self.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToContents)
 

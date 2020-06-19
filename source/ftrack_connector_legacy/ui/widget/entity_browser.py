@@ -8,9 +8,9 @@ import os
 from QtExt import QtWidgets, QtCore, QtGui
 import ftrack_api
 
-import ftrack_connect.ui.model.entity_tree
-import ftrack_connect.ui.widget.overlay
-import ftrack_connect.session
+import ftrack_connector_legacy.ui.model.entity_tree
+import ftrack_connector_legacy.ui.widget.overlay
+import ftrack_connector_legacy.session
 
 
 class EntityBrowser(QtWidgets.QDialog):
@@ -35,7 +35,7 @@ class EntityBrowser(QtWidgets.QDialog):
         self._selected = []
         self._updatingNavigationBar = False
 
-        self._session = ftrack_connect.session.get_session()
+        self._session = ftrack_connector_legacy.session.get_session()
 
         self._construct()
         self._postConstruction()
@@ -82,9 +82,9 @@ class EntityBrowser(QtWidgets.QDialog):
 
         self.contentSplitter.addWidget(self.view)
 
-        proxy = ftrack_connect.ui.model.entity_tree.EntityTreeProxyModel(self)
-        model = ftrack_connect.ui.model.entity_tree.EntityTreeModel(
-            root=ftrack_connect.ui.model.entity_tree.ItemFactory(
+        proxy = ftrack_connector_legacy.ui.model.entity_tree.EntityTreeProxyModel(self)
+        model = ftrack_connector_legacy.ui.model.entity_tree.EntityTreeModel(
+            root=ftrack_connector_legacy.ui.model.entity_tree.ItemFactory(
                 self._session, self._root
             ),
             parent=self
@@ -109,7 +109,7 @@ class EntityBrowser(QtWidgets.QDialog):
 
         self.layout().addLayout(self.footerLayout)
 
-        self.overlay = ftrack_connect.ui.widget.overlay.BusyOverlay(
+        self.overlay = ftrack_connector_legacy.ui.widget.overlay.BusyOverlay(
             self.view, message='Loading'
         )
 

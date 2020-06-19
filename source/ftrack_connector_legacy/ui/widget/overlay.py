@@ -3,7 +3,7 @@
 
 from QtExt import QtGui, QtCore, QtWidgets
 
-import ftrack_connect.ui.widget.indicator
+import ftrack_connector_legacy.ui.widget.indicator
 
 
 class Overlay(QtWidgets.QFrame):
@@ -204,7 +204,7 @@ class BusyOverlay(BlockingOverlay):
         '''Initialise with *parent* and busy *message*.'''
         super(BusyOverlay, self).__init__(parent, message=message)
 
-        self.indicator = ftrack_connect.ui.widget.indicator.BusyIndicator()
+        self.indicator = ftrack_connector_legacy.ui.widget.indicator.BusyIndicator()
         self.indicator.setFixedSize(85, 85)
 
         self.icon.hide()

@@ -6,8 +6,8 @@ import uuid
 
 from QtExt import QtWidgets, QtCore, QtGui
 
-import ftrack_connect.ui.widget.line_edit
-import ftrack_connect.ui.widget.label
+import ftrack_connector_legacy.ui.widget.line_edit
+import ftrack_connector_legacy.ui.widget.label
 
 
 class Component(QtWidgets.QWidget):
@@ -21,7 +21,7 @@ class Component(QtWidgets.QWidget):
         super(Component, self).__init__(parent=parent)
         self.setLayout(QtWidgets.QVBoxLayout())
 
-        self.componentNameEdit = ftrack_connect.ui.widget.line_edit.LineEdit()
+        self.componentNameEdit = ftrack_connector_legacy.ui.widget.line_edit.LineEdit()
         self.componentNameEdit.setPlaceholderText('Enter component name')
         self.componentNameEdit.textChanged.connect(self.nameChanged)
 
@@ -40,7 +40,7 @@ class Component(QtWidgets.QWidget):
             self.removeAction
         )
 
-        self.resourceInformation = ftrack_connect.ui.widget.label.Label()
+        self.resourceInformation = ftrack_connector_legacy.ui.widget.label.Label()
         self.layout().addWidget(self.resourceInformation)
 
         # Set initial values.

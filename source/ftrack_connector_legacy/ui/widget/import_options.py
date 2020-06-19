@@ -4,7 +4,7 @@
 from QtExt import QtCore, QtWidgets, QtGui
 
 from stacked_options import StackedOptionsWidget
-from ftrack_connect.connector import FTAssetHandlerInstance
+from ftrack_connector_legacy.connector import FTAssetHandlerInstance
 
 
 class Ui_ImportOptions(object):

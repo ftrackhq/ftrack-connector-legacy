@@ -6,9 +6,9 @@ import getpass
 
 from QtExt import QtWidgets
 
-from ftrack_connect.connector import PanelComInstance
-from ftrack_connect.ui.widget.web_view import WebViewWidget
-from ftrack_connect.ui.widget import header
+from ftrack_connector_legacy.connector import PanelComInstance
+from ftrack_connector_legacy.ui.widget.web_view import WebViewWidget
+from ftrack_connector_legacy.ui.widget import header
 
 
 class FtrackInfoDialog(QtWidgets.QDialog):

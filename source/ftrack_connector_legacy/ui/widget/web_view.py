@@ -12,7 +12,7 @@ except ImportError:
 
 import ftrack
 
-from ftrack_connect.connector import PersistentCookieJar, HelpFunctions
+from ftrack_connector_legacy.connector import PersistentCookieJar, HelpFunctions
 
 
 class Ui_WebView(object):

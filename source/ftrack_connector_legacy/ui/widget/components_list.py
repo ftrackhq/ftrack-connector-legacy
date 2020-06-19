@@ -5,11 +5,11 @@ import functools
 
 from QtExt import QtWidgets
 
-import ftrack_connect.ui.widget.component
-import ftrack_connect.ui.widget.item_list
+import ftrack_connector_legacy.ui.widget.component
+import ftrack_connector_legacy.ui.widget.item_list
 
 
-class ComponentsList(ftrack_connect.ui.widget.item_list.ItemList):
+class ComponentsList(ftrack_connector_legacy.ui.widget.item_list.ItemList):
     '''List components.
 
     The component list is managed using an internal model.
@@ -35,13 +35,13 @@ class ComponentsList(ftrack_connect.ui.widget.item_list.ItemList):
         '''Return component widget for *item*.
 
         *item* should be a mapping of keyword arguments to pass to
-        :py:class:`ftrack_connect.widget.component.Component`.
+        :py:class:`ftrack_connector_legacy.widget.component.Component`.
 
         '''
         if item is None:
             item = {}
 
-        return ftrack_connect.ui.widget.component.Component(**item)
+        return ftrack_connector_legacy.ui.widget.component.Component(**item)
 
     def addItem(self, item, row=None):
         '''Add *item* at *row*.

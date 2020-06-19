@@ -4,12 +4,12 @@
 from QtExt import QtWidgets
 from QtExt import QtCore
 
-import ftrack_connect.ui.widget.item_list
-import ftrack_connect.ui.widget.label
-import ftrack_connect.ui.widget.time_log
+import ftrack_connector_legacy.ui.widget.item_list
+import ftrack_connector_legacy.ui.widget.label
+import ftrack_connector_legacy.ui.widget.time_log
 
 
-class TimeLogList(ftrack_connect.ui.widget.item_list.ItemList):
+class TimeLogList(ftrack_connector_legacy.ui.widget.item_list.ItemList):
     '''List time logs widget.'''
 
     itemSelected = QtCore.Signal(object)
@@ -76,10 +76,10 @@ class TimeLogList(ftrack_connect.ui.widget.item_list.ItemList):
         '''Return time log widget for *item*.
 
         *item* should be a mapping of keyword arguments to pass to
-        :py:class:`ftrack_connect.ui.widget.time_log.TimeLog`.
+        :py:class:`ftrack_connector_legacy.ui.widget.time_log.TimeLog`.
 
         '''
         if item is None:
             item = {}
 
-        return ftrack_connect.ui.widget.time_log.TimeLog(**item)
+        return ftrack_connector_legacy.ui.widget.time_log.TimeLog(**item)

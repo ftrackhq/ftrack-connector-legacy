@@ -3,7 +3,7 @@
 
 from QtExt import QtWidgets, QtCore
 
-import ftrack_connect.ui.widget.list
+import ftrack_connector_legacy.ui.widget.list
 
 
 class ItemList(QtWidgets.QFrame):
@@ -30,7 +30,7 @@ class ItemList(QtWidgets.QFrame):
         self.setFrameStyle(QtWidgets.QFrame.StyledPanel | QtWidgets.QFrame.NoFrame)
 
         # List
-        self.list = ftrack_connect.ui.widget.list.List()
+        self.list = ftrack_connector_legacy.ui.widget.list.List()
         self.layout().addWidget(self.list, stretch=1)
 
         self.layout().setContentsMargins(5, 5, 5, 5)
