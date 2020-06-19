@@ -153,7 +153,6 @@ class BuildEgg(BuildEggCommand):
 
     def run(self):
         '''Run egg build ensuring build_resources called first.'''
-        self.run_command('clean')
         self.run_command('build_resources')
         BuildEggCommand.run(self)
 
@@ -163,7 +162,6 @@ class Build(BuildCommand):
 
     def run(self):
         '''Run build ensuring build_resources called first.'''
-        self.run_command('clean')
         self.run_command('build_resources')
         BuildCommand.run(self)
 
