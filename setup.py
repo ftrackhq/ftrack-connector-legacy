@@ -4,13 +4,14 @@
 import sys
 import os
 import subprocess
-import glob
+from distutils.spawn import find_executable
 
-from pkg_resources import parse_version
+
 from setuptools import setup, find_packages, Command
 from distutils.command.build import build as BuildCommand
-from setuptools.command.bdist_egg import bdist_egg as BuildEggCommand
 from distutils.command.clean import clean as CleanCommand
+
+from setuptools.command.bdist_egg import bdist_egg as BuildEggCommand
 from setuptools.command.test import test as TestCommand
 import distutils.dir_util
 import distutils
@@ -66,10 +67,10 @@ class BuildResources(Command):
         for line in fileinput.input(self.resource_target_path, inplace=True):
             if 'import QtCore' in line:
                 # Calling print will yield a new line in the resource file.
-                print line.replace(line, replace)
+                sys.stdout.write(line.replace(line, replace))
             else:
                 # Calling print will yield a new line in the resource file.
-                print line
+                sys.stdout.write(line)
 
     def run(self):
         '''Run build.'''
@@ -101,23 +102,35 @@ class BuildResources(Command):
                 print('Compiled {0}'.format(css_target))
 
         try:
-            pyside_rcc_command = 'pyside-rcc'
+            pyside_rcc_commands = ['pyside2-rcc', 'pyside-rcc']
+            valid_commands = []
 
-            # On Windows, pyside-rcc is not automatically available on the
-            # PATH so try to find it manually.
-            if sys.platform == 'win32':
-                import PySide
-                pyside_rcc_command = os.path.join(
-                    os.path.dirname(PySide.__file__),
-                    'pyside-rcc.exe'
-                )
+            for pyside_rcc_command in pyside_rcc_commands:
+                # On Windows, pyside-rcc is not automatically available on the
+                # PATH so try to find it manually.
+                if sys.platform == 'win32':
+                    import Qt
+                    pyside_rcc_command = os.path.join(
+                        os.path.dirname(Qt.__file__),
+                        '{}.exe'.format(pyside_rcc_command)
+                    )
 
+                # Check if the command for pyside*-rcc is in executable paths.
+                if find_executable(pyside_rcc_command):
+                    valid_commands.append(pyside_rcc_command)
+
+            if not valid_commands:
+                raise IOError('Not executable found for pyside*-rcc ')
+
+            # Use the first occurrence if more than one is found.
             subprocess.check_call([
-                pyside_rcc_command,
+                valid_commands[0],
                 '-o',
                 self.resource_target_path,
                 self.resource_source_path
             ])
+            print('{0} : Compiled {1} '.format(valid_commands[0], self.resource_target_path))
+
         except (subprocess.CalledProcessError, OSError) as error:
             raise RuntimeError(
                 'Error compiling resource.py using pyside-rcc. Possibly '
@@ -140,6 +153,7 @@ class BuildEgg(BuildEggCommand):
 
     def run(self):
         '''Run egg build ensuring build_resources called first.'''
+        self.run_command('clean')
         self.run_command('build_resources')
         BuildEggCommand.run(self)
 
@@ -149,6 +163,7 @@ class Build(BuildCommand):
 
     def run(self):
         '''Run build ensuring build_resources called first.'''
+        self.run_command('clean')
         self.run_command('build_resources')
         BuildCommand.run(self)
 
@@ -251,6 +266,10 @@ setup(
         'qtext @ git+https://bitbucket.org/ftrack/qtext/get/0.2.2.zip#egg=qtext'
     ],
     python_requires='>= 2.7.9, < 3.0',
+    extras_require={
+        'PySide': ['PySide >= 1.2.2, < 2'],
+        'PySide2': ['PySide2 >=5, <6']
+    },
     cmdclass={
         'build': Build,
         'build_ext': Build,

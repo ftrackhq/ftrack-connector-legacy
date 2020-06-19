@@ -38,4 +38,4 @@ Thumbs.db
 .settings
 .idea/
 source/ftrack_connector_legacy/_version.py
-
+source/ftrack_connector_legacy/ui/resource.py
