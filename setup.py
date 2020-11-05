@@ -247,7 +247,7 @@ setup(
     },
     install_requires=[
         'ftrack-python-legacy-api >=3, <4',
-        'ftrack-python-api >= 1, < 2',
+        'ftrack-python-api >=2, < 3',
         'Riffle',
         'arrow >= 0.4.6, < 1',
         'appdirs == 1.4.0',
