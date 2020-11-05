@@ -247,12 +247,11 @@ setup(
     },
     install_requires=[
         'ftrack-python-legacy-api >=3, <4',
-        'ftrack-python-api >=2, < 3',
+        'ftrack-python-api >=1, < 3',
         'Riffle',
         'arrow >= 0.4.6, < 1',
         'appdirs == 1.4.0',
         'requests >= 2, <3',
-        'future',
         'lowdown >= 0.1.0, < 1',
         'qtext @ git+https://bitbucket.org/ftrack/qtext/get/0.2.2.zip#egg=qtext'
     ],
