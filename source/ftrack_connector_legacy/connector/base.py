@@ -13,6 +13,7 @@ import imp
 import urllib2
 import re
 import sys
+import ssl
 
 from QtExt import QtWidgets, QtNetwork, QtCore, QtGui
 
@@ -389,6 +390,8 @@ class HelpFunctions(object):
             response = opener.open(url)
             html = response.read()
         else:
+            gcontext = ssl.SSLContext(ssl.PROTOCOL_TLS)
+            response = urllib2.urlopen(url, context=gcontext)
             response = urllib2.urlopen(url)
             html = response.read()
 
