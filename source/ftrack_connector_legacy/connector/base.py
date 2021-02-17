@@ -392,7 +392,6 @@ class HelpFunctions(object):
         else:
             gcontext = ssl.SSLContext(ssl.PROTOCOL_TLS)
             response = urllib2.urlopen(url, context=gcontext)
-            response = urllib2.urlopen(url)
             html = response.read()
 
         if toFile:
