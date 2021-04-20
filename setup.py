@@ -254,7 +254,7 @@ setup(
         'appdirs == 1.4.0',
         'requests >= 2, <3',
         'lowdown >= 0.1.0, < 1',
-        'qtext @ git+https://bitbucket.org/ftrack/qtext/get/0.2.2.zip#egg=qtext'
+        'qtext @ git+https://bitbucket.org/ftrack/qtext/get/0.2.3.zip#egg=qtext'
     ],
     python_requires='>= 2.7.9, < 3.0',
     cmdclass={
