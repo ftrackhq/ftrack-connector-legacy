@@ -233,7 +233,8 @@ setup(
     setup_requires=[
         'qtext @ git+https://bitbucket.org/ftrack/qtext/get/0.2.2.zip#egg=qtext',
         'pyScss >= 1.2.0, < 2',
-        'sphinx >= 1.2.2, < 2',
+        'docutils<0.17',
+        'sphinx >= 1.8.5',
         'sphinx_rtd_theme >= 0.1.6, < 2',
         'PySide >= 1.2.2, < 2',
         'lowdown >= 0.1.0, < 1',
