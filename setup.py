@@ -251,7 +251,7 @@ setup(
         'Riffle',
         'arrow >= 0.4.6, < 1',
         'appdirs == 1.4.0',
-        'requests >= 2, <3',
+        'requests >= 2, <2.26',
         'lowdown >= 0.1.0, < 1',
         'qtext @ git+https://bitbucket.org/ftrack/qtext/get/0.2.2.zip#egg=qtext'
     ],
